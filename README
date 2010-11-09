@@ -1,0 +1,81 @@
+Codeigniter-ServerDensity-API
+=============================
+=============================
+
+Usage
+=====
+
+This is a simple CodeIgniter wrapper for the ServerDensity API that allows you to view stats about your servers.
+
+So far only basic stats are available, more wrappers will be added over time.
+
+To use this library, drop the config into your Config folder and add the details, then add the Server_density_api.php file into your Libraries folder.
+
+
+Notes
+=====
+
+For range values, times must be GMT formatted without a Timezone flag, i.e
+
+date_default_timezone_set('Europe/London'); 
+$start_time = gmdate("Y-m-d\TH:i:s",strtotime('-30 mins')); 
+$end_time = gmdate("Y-m-d\TH:i:s"); 
+
+
+Example
+=======
+
+When an api call is made, the results are returned in JSON format. 
+For more info on the API, read the official docs here - http://www.serverdensity.com/docs/api/usageguide/
+
+1. Load the library
+   
+   $this->load->library('server_density_api');	
+
+2. Make an API call
+   
+   For example to get physical memory for your server with an ID of 6 
+   
+   $memory = $this->server_density_api->get_physical_memory(6);
+
+   $used_memory = $memory->metric->valueUsed;
+
+   echo $used_memory;
+
+
+Methods
+=======
+
+To call a method, use $this->server_density_api-> and then one of the methods below.
+
+Alerts
+Get latest alerts - get_latest_alerts();
+
+Servers
+Get servers - get_servers();
+Get server details - get_server_details($server_id);
+Get server stats - get_server_stats($server_id);
+
+Load
+Get server load - get_server_load($server_id);
+Get server load range - get_server_load_range($server_id,$start_time,$end_time); 
+
+Memory
+Get physical memory - get_physical_memory($server_id);
+Get physical memory range - get_physical_memory_range($server_id,$start_time,$end_time); 
+
+Disk Usage
+Get disk usage - get_disk_usage($server_id);
+Get disk usage range - get_disk_usage_range($server_id,$start_time,$end_time);
+
+Network traffic
+Get network traffic - get_network_traffic($server_id);
+Get network traffic range - get_networl_traffic_range($server_id,$start_time,$end_time);
+
+MySQL
+Get mysql status - get_mysql_status($server_id);
+Get mysql status range - get_mysql_status_range($server_id,$start_time,$end_time);
+
+Apache status
+Get apache status - get_apache_status($server_id);
+Get apache status range - get_apache_status_range($server_id,$start_time,$end_time);
