@@ -16,7 +16,7 @@ class Server_Density_API {
     $this->sd_user = $this->CI->config->item('sd_user_name');
     $this->sd_pass = $this->CI->config->item('sd_password');
     
-    $this->sd_api_url = "http://api.serverdensity.com/1.0/?account=".$this->sd_account.".serverdensity.com";
+    $this->sd_api_url = "http://api.serverdensity.com/1.1/?account=".$this->sd_account.".serverdensity.com";
   
   }
   
