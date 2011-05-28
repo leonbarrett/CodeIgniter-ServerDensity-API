@@ -21,6 +21,10 @@ date_default_timezone_set('Europe/London');
 $start_time = gmdate("Y-m-d\TH:i:s",strtotime('-30 mins')); 
 $end_time = gmdate("Y-m-d\TH:i:s"); 
 
+UPDATE - For version 1.1 of the api, you are required to list the new server ID which is a string rather than an int. 
+
+Call the get_servers method to find out your server ID
+
 
 Example
 =======
@@ -34,9 +38,9 @@ For more info on the API, read the official docs here - http://www.serverdensity
 
 2. Make an API call
    
-   For example to get physical memory for your server with an ID of 6 
+   For example to get physical memory for your server with an ID of yhi45675vgd6 
    
-   $memory = $this->server_density_api->get_physical_memory(6);
+   $memory = $this->server_density_api->get_physical_memory(yhi45675vgd6);
 
    $used_memory = $memory->metric->valueUsed;
 
