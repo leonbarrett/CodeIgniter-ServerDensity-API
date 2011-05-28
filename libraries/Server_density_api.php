@@ -15,8 +15,10 @@ class Server_Density_API {
     $this->sd_account = $this->CI->config->item('sd_account_name');
     $this->sd_user = $this->CI->config->item('sd_user_name');
     $this->sd_pass = $this->CI->config->item('sd_password');
+	$this->api_version = $this->CI->config->item('sd_api_version');
+
     
-    $this->sd_api_url = "http://api.serverdensity.com/1.1/?account=".$this->sd_account.".serverdensity.com";
+    $this->sd_api_url = "http://api.serverdensity.com/".$this->api_version."/?account=".$this->sd_account.".serverdensity.com";
   
   }
   
@@ -53,6 +55,31 @@ class Server_Density_API {
   	return $server_stats;
   		
   }
+
+  //Metrics
+
+  function get_metrics_latest($server_id,$metric_name = ''){
+	
+	$latest_metrics = $this->make_api_call($this->sd_api_url."&c=metrics/getLatest&serverId=".$server_id."&metricName=".$metric_name);
+
+  	return $latest_metrics;
+	
+  }
+
+  function get_metrics_latest_range($server_id,$metric_name,$start_time,$end_time){
+
+  	$range_load = $this->make_api_call($this->sd_api_url."&c=metrics/getLatest&serverId=".$server_id."&metricName=".$metric_name."&rangeStart=".$start_time."&rangeEnd=".$end_time);
+
+  	return $range_load;
+
+  }
+
+  function get_metrics_list($os){
+	
+	$list_metrics = $this->make_api_call($this->sd_api_url."&c=metrics/list&os=".$os);
+
+  	return $list_metrics;
+}
   
   //Load
   function get_server_load($server_id){

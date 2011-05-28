@@ -14,5 +14,6 @@ $config['sd_user_name'] = '';
 //Server Density Password
 $config['sd_password'] = '';
 
+$config['sd_api_version'] = '1.0';
 
 ?>
